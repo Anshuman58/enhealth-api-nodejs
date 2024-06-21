@@ -3,6 +3,7 @@ import { HookContext } from '@feathersjs/feathers';
 import { Application } from './declarations';
 import { RealTimeConnection } from '@feathersjs/transport-commons/lib/channels/channel/base';
 import handleChatEvent from './socket_utils/handleChatEvent';
+import handleConsultationEvent from './socket_utils/handleConsultationEvent';
 
 export default function (app: Application): void {
     if (typeof app.channel !== 'function') {
@@ -56,6 +57,10 @@ export default function (app: Application): void {
 
     app.service('v1/consultation-chat').publish('removed', async (result, context) => {
         return handleChatEvent(result, context);
+    });
+
+    app.service('v1/consultation-booking').publish('patched', async (result, context) => {
+        return handleConsultationEvent(result, context);
     });
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
