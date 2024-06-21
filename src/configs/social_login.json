@@ -1,0 +1,28 @@
+{
+    "google": {
+        "google_oauth_url": "https://www.googleapis.com/oauth2/v2/userinfo"
+    },
+    "facebook": {
+        "facebook_oauth_url": "https://graph.facebook.com/v7.0"
+    },
+    "apple": {
+        "apple_oauth_url": "https://appleid.apple.com/auth/keys",
+        "apple_issuer": "https://appleid.apple.com"
+    },
+    "twitter": {
+        "twitter_oauth_url": "https://api.twitter.com/1.1/account/verify_credentials.json?include_email=true",
+        "twitter_oauth_consumer_key": "FJ7vfXgMiOUxGBbFRnaXCb0x0",
+        "twitter_oauth_consumer_secret": "4dopDcwVcXbnqqjBpkwnODKzj2KK8iU3zFI24gTi5AdhbhIOcg",
+        "twitter_oauth_signature_method": "HMAC-SHA1"
+    },
+    "linkedin": {
+        "linkedin_email_url": "https://api.linkedin.com/v2/emailAddress",
+        "linkedin_profile_url": "https://api.linkedin.com/v2/me"
+    },
+    "instagram": {
+        "instagram_oauth_url": "https://graph.instagram.com/me"
+    },
+    "youtube": {
+        "youtube_oauth_url": "https://www.googleapis.com/youtube/v3/channels"
+    }
+}

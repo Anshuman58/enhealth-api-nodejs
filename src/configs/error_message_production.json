@@ -1,0 +1,14 @@
+{
+    "google_login": "Failed to authenticate the user with Google.",
+    "facebook_login": "Failed to authenticate the user with Facebook.",
+    "facebook_login_email": "Please provide email access to the application while authorizing with facebook.",
+    "apple_login": "Failed to authenticate the user with Apple.",
+    "apple_login_email": "Please provide email access to the application while authorizing with apple.",
+    "linkedin_login": "Failed to authenticate the user with LinkedIn.",
+    "linkedin_login_email": "Please provide email access to the application while authorizing with linkedin.",
+    "twitter_login": "Failed to authenticate the user with Twitter.",
+    "twitter_login_email": "Please provide email access to the application while authorizing with twitter.",
+    "github_login": "Failed to authenticate the user with Github.",
+    "instagram_connect": "Can not connect to your Instagram account.",
+    "youtube_connect": "Can not connect to your YouTube account."
+}
