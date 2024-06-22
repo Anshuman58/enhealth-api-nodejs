@@ -1,6 +1,6 @@
 
 import { Types } from 'mongoose';
-import { Country } from '../../country/interfaces/CountryInterfaces';
+// import { Country } from '../../country/interfaces/CountryInterfaces';
 
 /**
  * @description interfaces for user
@@ -13,7 +13,7 @@ interface User {
     email: string;
     password: string;
     phone?: string;
-    country?: Country;
+    // country?: Country;
     role: 1 | 2 | 3;
     status: 1 | -1;
     createdAt: Date;

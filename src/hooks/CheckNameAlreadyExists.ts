@@ -1,7 +1,7 @@
 
 import { BadRequest } from '@feathersjs/errors';
 import { HookContext } from '@feathersjs/feathers';
-import { AllCountries } from '../db_services/v1/country/interfaces/CountryInterfaces';
+// import { AllCountries } from '../db_services/v1/country/interfaces/CountryInterfaces';
 
 /**
  * @description check if same name already exists.
@@ -32,7 +32,7 @@ const CheckNameAlreadyExists = (key: string) => async (context: HookContext) => 
                 query,
                 paginate: false,
             })
-            .then((res: AllCountries | any) => res.length);
+            .then((res: any) => res.length);
         if (entityExist) throw new BadRequest(`${key} with ${name} already exists.`);
 
         data.name = name.trim();

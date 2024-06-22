@@ -1,6 +1,3 @@
-
-import { Country } from '../../country/interfaces/CountryInterfaces';
-
 /**
  * @description interfaces for user request.
  */
@@ -13,7 +10,7 @@ interface UserDatum {
     phone?: string;
     role: 1 | 2 | 3;
     status: 1 | -1;
-    country?: Country;
+    // country?: Country;
 }
 
 interface UserData extends Array<UserDatum> {}
