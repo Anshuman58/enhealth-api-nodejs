@@ -27,7 +27,7 @@
         "test": "yarn run lint && yarn run compile && yarn run jest",
         "lint": "eslint src/. test/. --config .eslintrc.json --ext .ts --fix",
         "local": "ts-node-dev --no-notify src/",
-        "dev": "yarn compile && node lib/",
+        "dev": "export NODE_OPTIONS=--max_old_space_size=4096 && yarn compile && node lib/",
         "prod": "NODE_ENV=production && yarn run compile && node lib/",
         "jest": "jest --forceExit",
         "compile": "shx rm -rf lib/ && tsc"
