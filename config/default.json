@@ -1,39 +1,36 @@
 {
-  "host": "localhost",
-  "port": 5001,
-  "public": "../public/",
-  "paginate": {
-    "default": 10,
-    "max": 50
-  },
-  "authentication": {
-    "entity": "user",
-    "service": "v1/user",
-    "secret": "zll+wfYC91IiDKzkeuUi6Ga7Lik=",
-    "authStrategies": [
-      "jwt",
-      "local"
-    ],
-    "jwtOptions": {
-      "header": {
-        "typ": "access"
-      },
-      "audience": "https://yourdomain.com",
-      "issuer": "feathers",
-      "algorithm": "HS256",
-      "expiresIn": "1d"
+    "host": "localhost",
+    "port": 5001,
+    "public": "../public/",
+    "paginate": {
+        "default": 10,
+        "max": 50
     },
-    "local": {
-      "usernameField": "email",
-      "passwordField": "password"
-    }
-  },
-  "mongodb": "mongodb+srv://elliot:elliot%402658@cluster0.r8lhm.mongodb.net/enhealth",
-  "otp": {
-      "length": 6,
-      "expireOn": 10,
-      "viewLog": true
-  },
+    "authentication": {
+        "entity": "user",
+        "service": "v1/user",
+        "secret": "zll+wfYC91IiDKzkeuUi6Ga7Lik=",
+        "authStrategies": ["jwt", "local"],
+        "jwtOptions": {
+            "header": {
+                "typ": "access"
+            },
+            "audience": "https://yourdomain.com",
+            "issuer": "feathers",
+            "algorithm": "HS256",
+            "expiresIn": "1d"
+        },
+        "local": {
+            "usernameField": "email",
+            "passwordField": "password"
+        }
+    },
+    "mongodb": "mongodb+srv://elliot:elliot%402658@cluster0.r8lhm.mongodb.net/enhealth",
+    "otp": {
+        "length": 6,
+        "expireOn": 10,
+        "viewLog": true
+    },
     "aws": {
         "accessKeyId": "",
         "secretAccessKey": "",
@@ -45,8 +42,8 @@
         "privateKey": ""
     },
     "agora": {
-        "appId": "610ed374b9d74e898dfbc7e6d554fa1a",
-        "appCertificate": "3598b6ff9a664e98b6768742e6be1efe"
+        "appId": "4437e0a79c594e9fabb982fc6786fcc8",
+        "appCertificate": "f8d28d2d615245ea895d37649fa6ba41"
     },
     "msg91": {
         "authKey": "",
