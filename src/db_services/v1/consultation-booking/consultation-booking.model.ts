@@ -4,6 +4,7 @@
 // for more of what you can do here.
 import { Application } from '../../../declarations';
 import { Model, Mongoose } from 'mongoose';
+import {consultationBookingStatus, patientGender} from "./Interface/ConsultationookingInterface";
 
 export default function (app: Application): Model<any> {
     const modelName = 'consultationBooking';
@@ -12,10 +13,6 @@ export default function (app: Application): Model<any> {
     const { ObjectId } = Schema?.Types;
     const schema = new Schema(
         {
-            user: {
-                type: ObjectId,
-                ref: 'user',
-            },
             doctor: {
                 type: ObjectId,
                 ref: 'user',
@@ -26,19 +23,28 @@ export default function (app: Application): Model<any> {
                 ref: 'user',
                 required: true,
             },
+            patient: {
+                name: {
+                    type: String,
+                },
+                age: {
+                    type: Number,
+                },
+                gender: {
+                    type: Number,
+                    enum: patientGender,
+                },
+                phone: {
+                    type: String,
+                },
+                complaint: {
+                    type: String,
+                },
+            },
             status: {
                 type: Number,
-                enum: [
-                    0, //init
-                    1, //booked
-                    2, //approved
-                    3, //started
-                    4, //completed
-                    5, //rejected
-                    6, //cancelled
-                    -1, //removed
-                ],
-                default: 0,
+                enum: consultationBookingStatus,
+                default: consultationBookingStatus.INIT,
             },
         },
         {
