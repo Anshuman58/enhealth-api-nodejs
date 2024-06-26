@@ -29,12 +29,8 @@ export default {
         ],
         get: [authenticate('jwt'), setDefaultQuery('status', { $ne: UserStatus.REMOVED })],
         create: [
-            FRequired(['name', 'phone', 'role']),
-            iff(
-                HasAccessToken(),
-                authenticate('jwt'),
-                iff(Permit.is(Permit.SUPER_ADMIN), setCreatedBy('createdBy')),
-            ).else(FRequired(['email'])),
+            FRequired(['name', 'email', 'role']),
+            iff(HasAccessToken(), authenticate('jwt')),
             // iff(HasData('role', UserRole.ADMIN, UserRole.USER)).else(disallow()),
             GenerateCode(userPath, '#', 'userId', 5),
             iff(HasDataExists('password'), hashPassword('password')),
