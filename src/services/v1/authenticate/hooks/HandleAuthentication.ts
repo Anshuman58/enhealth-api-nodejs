@@ -17,6 +17,7 @@ const HandleAuthentication = () => async (context: HookContext) => {
 
     switch (strategy) {
         case AuthStrategies.LOCAL:
+        case AuthStrategies.JWT:
             context.result = await handleLocalAndJWTAuthentication(context).catch((e: FeathersError) => {
                 throw e;
             });
