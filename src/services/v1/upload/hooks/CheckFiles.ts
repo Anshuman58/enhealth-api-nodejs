@@ -1,59 +1,72 @@
-/**
- * Created By Soumya(soumya\@smartters.in) on 2/23/2022 at 12:01 AM.
- */
 import { HookContext } from '@feathersjs/feathers';
 import { BadRequest } from '@feathersjs/errors';
-import moment from 'moment';
-import { UploadUtilities } from '../../../../utils/UploadUtilities/UploadUtilities';
-
-const fileTypes = [1, 2];
-const purposes = ['profile', 'kyc', 'country', 'chat'];
+import { FileType, upload_POST } from '../Interface/UploadInterface';
+import getLinkAndThumbnailForImage from '../utils/getLinkAndThumbnailForImage';
+import { Types } from 'mongoose';
+import getLinkForDocument from '../utils/getLinkForDocument';
 
 /**
  *  upload all files.
  */
 const CheckFiles = () => async (context: HookContext) => {
-    const { data, app } = context;
+    const { data, app, params } = context;
 
     const { files, fileType, purpose } = data;
 
-    if (!fileTypes.includes(parseInt(fileType))) throw new BadRequest('Please provide a valid file type.');
+    // console.log(type);
 
-    if (!purposes.includes(purpose)) throw new BadRequest('Please provide a valid purpose.');
+    if (!FileType[parseInt(fileType)]) throw new BadRequest('Please provide a valid file type.');
 
-    const bucket = app.get('aws-bucket');
-    const s3 = app.get('s3');
+    const bucket = app.get('aws_bucket');
 
-    const uploadedFiles: string[] = [];
+    const uploadedFiles: upload_POST[] = [];
 
     for (const file of files) {
-        const fileType = file.mimeType;
+        // const fileType = file.mimetype;
+        let thumbnailUrl = '';
+        let uploadUrl = '';
+        const duration = 0;
+        const size = file.size;
+        const host = params.headers?.host;
 
-        const timestamp = Date.now();
-        const fileName = file.originalname;
-        const folder1 = moment(new Date()).format('YYYY');
-        const folder2 = moment(new Date()).format('MMDD');
-        const fileKey = `${purpose}/${folder1}/${folder2}/${timestamp}_${fileName}`;
+        if (fileType === FileType.VIDEO) return context;
 
-        const uploadData = await UploadUtilities.uploadFileToS3(fileKey, file.buffer, fileType, bucket);
+        switch (parseInt(fileType)) {
+            case FileType.IMAGE:
+                const imageUploadData = await getLinkAndThumbnailForImage(file, bucket, purpose, host);
+                thumbnailUrl = imageUploadData.thumbnailUrl;
+                uploadUrl = imageUploadData.uploadUrl;
+                break;
 
-        if (!uploadData) {
-            throw new BadRequest('Error while uploading. Please try after some time.');
+            // case FileType.VIDEO:
+            //     const videoUploadData = await getLinkAndThumbnailForVideo(file, bucket, purpose);
+            //     thumbnailUrl = videoUploadData.thumbnailUrl;
+            //     uploadUrl = videoUploadData.uploadUrl;
+            //     duration = videoUploadData.duration;
+            //     break;
+
+            case FileType.DOCUMENT:
+                const docUploadData = await getLinkForDocument(file, bucket, purpose, host);
+                uploadUrl = docUploadData.uploadUrl;
+                break;
+            default:
+                throw new BadRequest('Invalid upload file type.');
         }
 
-        const filePath = uploadData.Location;
-
-        uploadedFiles.push(filePath);
+        uploadedFiles.push({
+            user: data?.user as Types.ObjectId,
+            fileType: parseInt(fileType),
+            purpose,
+            link: uploadUrl,
+            thumbnail: thumbnailUrl,
+            metadata: {
+                size: size,
+                duration: duration ? duration : undefined,
+            },
+        });
     }
 
-    context.data = uploadedFiles.map((e) => {
-        return {
-            purpose,
-            filePath: e,
-            fileType,
-        };
-    });
-
+    context.data = uploadedFiles;
     context.params.query = {
         $limit: uploadedFiles.length,
     };

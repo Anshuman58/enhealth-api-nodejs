@@ -1,9 +1,8 @@
-import { HooksObject } from '@feathersjs/feathers';
 import * as authentication from '@feathersjs/authentication';
-import SetDefaultItem from "../../../../hooks/SetDefaultItem";
-import {disallow, iff, isProvider} from "feathers-hooks-common";
-import {EntityStatus} from "../../../../constants/EntityStatus";
-import PatchDeleted from "../../../../hooks/PatchDeleted";
+import SetDefaultItem from '../../../../hooks/SetDefaultItem';
+import { disallow, iff, isProvider } from 'feathers-hooks-common';
+import { EntityStatus } from '../../../../constants/EntityStatus';
+import PatchDeleted from '../../../../hooks/PatchDeleted';
 // Don't remove this comment. It's needed to format import lines nicely.
 
 const { authenticate } = authentication.hooks;

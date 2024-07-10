@@ -1,7 +1,8 @@
-// Initializes the `v1/upload` service on path `/v1/upload`
+// Initializes the `../db_services/v1/upload` service on path `/v1/upload`
 import { ServiceAddons } from '@feathersjs/feathers';
 import { Application } from '../../../declarations';
 import { Upload } from './upload.class';
+import createModel from './upload.model';
 import hooks from './upload.hooks';
 import multer from 'multer';
 import { NextFunction, Request, Response } from 'express';
@@ -15,6 +16,7 @@ declare module '../../../declarations' {
 
 export default function (app: Application): void {
     const options = {
+        Model: createModel(app),
         paginate: app.get('paginate'),
         multi: true,
     };
@@ -23,6 +25,7 @@ export default function (app: Application): void {
     const upload = multer({ storage: storage });
 
     // Initialize our service with any options it requires
+    // app.use('/v1/upload', new Upload(options, app));
     app.use(
         '/v1/upload',
         upload.any(),

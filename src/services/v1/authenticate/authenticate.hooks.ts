@@ -7,6 +7,7 @@ import HandleAuthentication from './hooks/HandleAuthentication';
 import HandleOTPVerification from './hooks/HandleOTPVerification';
 import CreateUserSession from '../../../hooks/CreateUserSession';
 import CustomProtectHook from '../../../hooks/CustomProtectHook';
+import AttachProfileDetails from './hooks/AttachProfileDetails';
 // Don't remove this comment. It's needed to format import lines nicely.
 
 const { authenticate } = authentication.hooks;
@@ -18,7 +19,9 @@ export default {
         get: [disallow()],
         create: [
             FRequired(['strategy']),
-            iff(hasData('strategy', AuthStrategies.PHONE_OTP, AuthStrategies.EMAIL_OTP), FRequired(['action'])).else(
+            iff(
+                hasData('strategy', AuthStrategies.PHONE_OTP, AuthStrategies.EMAIL_OTP),
+                FRequired(['action']),
                 discard('action'),
             ),
             iff(hasData('strategy', AuthStrategies.PHONE_OTP), FRequired(['phone', 'role'])),
@@ -58,9 +61,9 @@ export default {
         all: [],
         find: [],
         get: [],
-        create: [CreateUserSession()],
+        create: [AttachProfileDetails(), CreateUserSession()],
         update: [],
-        patch: [],
+        patch: [AttachProfileDetails(), CreateUserSession()],
         remove: [],
     },
 

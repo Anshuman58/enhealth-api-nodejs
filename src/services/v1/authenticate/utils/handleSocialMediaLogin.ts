@@ -59,7 +59,7 @@ const handleSocialMediaLogin = async (context: HookContext) => {
                 },
             });
             if (!userData) {
-                const newUserData: User_POST = {
+                const newUserData: any = {
                     name: `${firstName} ${lastName}`,
                     avatar,
                     email,

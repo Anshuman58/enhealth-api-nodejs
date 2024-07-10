@@ -1,5 +1,6 @@
 import { Types } from 'mongoose';
 import { HookContext, Service } from '@feathersjs/feathers';
+import { UploadMediaAttachment } from '../../../../global_interface/UploadMediaAttachment';
 
 export enum UserRole {
     SUPER_ADMIN = 1,
@@ -11,6 +12,7 @@ export enum UserRole {
 
 export enum UserStatus {
     ACTIVE = 1,
+    INACTIVE = 2,
     BLOCKED = 0,
     REMOVED = -1,
 }
@@ -30,7 +32,7 @@ export interface User_GET {
     password?: string;
     userId: string;
     role: UserRole;
-    avatar?: string;
+    avatar?: UploadMediaAttachment;
     address?: string;
     socialLogin?: boolean;
     status: UserStatus;
@@ -54,22 +56,23 @@ export interface User_POST {
     phone?: string;
     gender?: UserGender;
     userId?: string;
-    avatar?: string;
+    avatar?: UploadMediaAttachment;
     socialLogin?: boolean;
     password?: string;
     role: UserRole;
 }
 
 export interface User_PATCH {
-    name: string;
+    name?: string;
     email?: string;
     phone?: string;
     gender?: UserGender;
     password?: string;
-    avatar?: string;
+    avatar?: UploadMediaAttachment;
     address?: string;
-
-    status: UserStatus;
+    doctorProfile?: Types.ObjectId;
+    vendorProfile?: Types.ObjectId;
+    status?: UserStatus;
 }
 
 export type PermitType = (context: HookContext, strict?: boolean) => HookContext<any, Service<any>>;

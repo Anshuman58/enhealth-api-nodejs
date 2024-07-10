@@ -24,7 +24,9 @@ export default {
             authenticate('jwt'),
             iff(
                 Permit.is(Permit.SUPER_ADMIN),
-                setDefaultQuery('status', { $in: [UserStatus.ACTIVE, UserStatus.BLOCKED] }),
+                setDefaultQuery('status', {
+                    $in: [UserStatus.ACTIVE, UserStatus.BLOCKED],
+                }),
             ).else(setDefaultQuery('status', UserStatus.ACTIVE)),
         ],
         get: [authenticate('jwt'), setDefaultQuery('status', { $ne: UserStatus.REMOVED })],
@@ -36,7 +38,7 @@ export default {
             iff(HasDataExists('password'), hashPassword('password')),
             CheckEmailOrPhone(),
             ValidateRegistrationToken(),
-            setDefaultItem('status', UserStatus.ACTIVE),
+            setDefaultItem('status', UserStatus.INACTIVE),
         ],
         update: [disallow()],
         patch: [

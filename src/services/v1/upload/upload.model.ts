@@ -1,74 +1,52 @@
-// v1/user-model.ts - A mongoose model
+// ../db_services/v1/upload-model.ts - A mongoose model
 //
 // See http://mongoosejs.com/docs/models.html
 // for more of what you can do here.
 import { Application } from '../../../declarations';
 import { Model, Mongoose } from 'mongoose';
-import { UserGender, UserRole, UserStatus } from './interfaces/UserInterfaces';
+import { FilePurpose, FileType } from './Interface/UploadInterface';
+import { EntityStatus } from '../../../constants/EntityStatus';
 
 export default function (app: Application): Model<any> {
-    const modelName = 'user';
+    const modelName = 'upload';
     const mongooseClient: Mongoose = app.get('mongooseClient');
     const { Schema } = mongooseClient;
     const { ObjectId } = Schema?.Types;
     const schema = new Schema(
         {
-            createdBy: {
+            user: {
                 type: ObjectId,
                 ref: 'user',
             },
-            name: {
+            purpose: {
+                type: String,
+                enum: FilePurpose,
+                required: true,
+            },
+            fileType: {
+                type: Number,
+                enum: FileType,
+                required: true,
+            },
+            thumbnail: {
+                type: String,
+            },
+            link: {
                 type: String,
                 required: true,
             },
-            phone: {
-                type: String,
-            },
-            avatar: {
-                link: {
-                    type: String,
+            metadata: {
+                size: {
+                    type: Number,
                 },
-                thumbnail: {
-                    type: String,
+                duration: {
+                    type: Number,
                 },
-                metadata: {
-                    size: Number,
-                },
-            },
-            email: {
-                type: String,
-                lowercase: true,
-            },
-            password: {
-                type: String,
-            },
-            userId: {
-                type: String,
-            },
-            gender: {
-                type: Number,
-                enum: UserGender,
-            },
-            role: {
-                type: Number,
-                enum: UserRole,
-                required: true,
-            },
-            address: {
-                type: String,
-            },
-            vendorProfile: {
-                type: ObjectId,
-                ref: 'vendorProfile',
-            },
-            socialLogin: {
-                type: Boolean,
-                default: false,
             },
             status: {
                 type: Number,
-                enum: UserStatus,
-                default: 1,
+                enum: EntityStatus,
+                default: EntityStatus.ACTIVE,
             },
         },
         {
