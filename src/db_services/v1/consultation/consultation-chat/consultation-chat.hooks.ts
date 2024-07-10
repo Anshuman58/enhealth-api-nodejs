@@ -1,14 +1,13 @@
-import { HooksObject } from '@feathersjs/feathers';
 import * as authentication from '@feathersjs/authentication';
-import setCreatedBy from '../../../hooks/SetCreatedBy';
-import Permit from '../../../hooks/Permit';
+import setCreatedBy from '../../../../hooks/SetCreatedBy';
+import Permit from '../../../../hooks/Permit';
 import { disallow, iff } from 'feathers-hooks-common';
-import FRequired from '../../../hooks/FRequired';
-import setDefaultItem from '../../../hooks/SetDefaultItem';
-import { EntityStatus } from '../../../global_interface/Interface';
-import SetCreatedByQuery from '../../../hooks/SetCreatedByQuery';
-import SetQuery from '../../../hooks/SetQuery';
-import PatchDeleted from '../../../hooks/PatchDeleted';
+import FRequired from '../../../../hooks/FRequired';
+import setDefaultItem from '../../../../hooks/SetDefaultItem';
+import { EntityStatus } from '../../../../global_interface/Interface';
+import SetCreatedByQuery from '../../../../hooks/SetCreatedByQuery';
+import SetQuery from '../../../../hooks/SetQuery';
+import PatchDeleted from '../../../../hooks/PatchDeleted';
 // Don't remove this comment. It's needed to format import lines nicely.
 
 const { authenticate } = authentication.hooks;

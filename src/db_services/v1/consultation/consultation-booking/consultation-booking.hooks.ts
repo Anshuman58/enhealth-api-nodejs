@@ -1,13 +1,13 @@
 import * as authentication from '@feathersjs/authentication';
-import SetCreatedBy from '../../../hooks/SetCreatedBy';
-import FRequired from '../../../hooks/FRequired';
-import SetDefaultItem from '../../../hooks/SetDefaultItem';
+import SetCreatedBy from '../../../../hooks/SetCreatedBy';
+import FRequired from '../../../../hooks/FRequired';
+import SetDefaultItem from '../../../../hooks/SetDefaultItem';
 import { disallow, iff } from 'feathers-hooks-common';
-import Permit from '../../../hooks/Permit';
-import setCreatedByQuery from '../../../hooks/SetCreatedByQuery';
-import setDefaultQuery from '../../../hooks/SetDefaultQuery';
+import Permit from '../../../../hooks/Permit';
+import setCreatedByQuery from '../../../../hooks/SetCreatedByQuery';
+import setDefaultQuery from '../../../../hooks/SetDefaultQuery';
 import { consultationBookingStatus } from './Interface/ConsultationookingInterface';
-import PatchDeleted from '../../../hooks/PatchDeleted';
+import PatchDeleted from '../../../../hooks/PatchDeleted';
 // Don't remove this comment. It's needed to format import lines nicely.
 
 const { authenticate } = authentication.hooks;
@@ -18,7 +18,9 @@ export default {
         find: [
             iff(Permit.is(Permit.DOCTOR), setCreatedByQuery('doctor')),
             iff(Permit.is(Permit.VENDOR), setCreatedByQuery('vendor')),
-            setDefaultQuery('status', { $ne: consultationBookingStatus.REMOVED }),
+            setDefaultQuery('status', {
+                $ne: consultationBookingStatus.REMOVED,
+            }),
         ],
         get: [
             iff(Permit.is(Permit.DOCTOR), setCreatedByQuery('doctor')),

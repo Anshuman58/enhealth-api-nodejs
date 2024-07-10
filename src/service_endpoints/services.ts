@@ -11,3 +11,5 @@ export const userSessionPath = 'v1/user-session';
 export const productCategoryPath = 'v1/master-data/product-category';
 export const productSubCategoryPath = 'v1/master-data/product-sub-category';
 export const vendorProfilePath = 'v1/profile/vendor-profile';
+export const doctorProfilePath = 'v1/profile/doctor-profile';
+export const consultationBookingPath = 'v1/consultation/consultation-booking';

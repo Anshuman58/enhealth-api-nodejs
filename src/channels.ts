@@ -1,5 +1,4 @@
 import '@feathersjs/transport-commons';
-import { HookContext } from '@feathersjs/feathers';
 import { Application } from './declarations';
 import { RealTimeConnection } from '@feathersjs/transport-commons/lib/channels/channel/base';
 import handleChatEvent from './socket_utils/handleChatEvent';
@@ -51,15 +50,15 @@ export default function (app: Application): void {
         }
     });
 
-    app.service('v1/consultation-chat').publish('created', async (result, context) => {
+    app.service('v1/consultation/consultation-chat').publish('created', async (result, context) => {
         return handleChatEvent(result, context);
     });
 
-    app.service('v1/consultation-chat').publish('removed', async (result, context) => {
+    app.service('v1/consultation/consultation-chat').publish('removed', async (result, context) => {
         return handleChatEvent(result, context);
     });
 
-    app.service('v1/consultation-booking').publish('patched', async (result, context) => {
+    app.service('v1/consultation/consultation-booking').publish('patched', async (result, context) => {
         return handleConsultationEvent(result, context);
     });
 

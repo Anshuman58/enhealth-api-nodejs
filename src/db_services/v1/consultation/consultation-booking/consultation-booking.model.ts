@@ -1,44 +1,50 @@
-// ../db_services/v1/consultation-chat-model.ts - A mongoose model
+// ../db_services/v1/consultation-booking-model.ts - A mongoose model
 //
 // See http://mongoosejs.com/docs/models.html
 // for more of what you can do here.
-import { Application } from '../../../declarations';
+import { Application } from '../../../../declarations';
 import { Model, Mongoose } from 'mongoose';
+import { consultationBookingStatus, patientGender } from './Interface/ConsultationookingInterface';
 
 export default function (app: Application): Model<any> {
-    const modelName = 'consultationChat';
+    const modelName = 'consultationBooking';
     const mongooseClient: Mongoose = app.get('mongooseClient');
     const { Schema } = mongooseClient;
-    const { ObjectId } = Schema.Types;
+    const { ObjectId } = Schema?.Types;
     const schema = new Schema(
         {
-            createdBy: {
-                type: ObjectId,
-                ref: 'user',
-                required: true,
-            },
-            user: {
-                type: ObjectId,
-                ref: 'user',
-                required: true,
-            },
             doctor: {
                 type: ObjectId,
                 ref: 'user',
+                required: true,
             },
-            text: {
-                type: String,
+            vendor: {
+                type: ObjectId,
+                ref: 'user',
+                required: true,
             },
-            attachment: {
-                type: String,
+            patient: {
+                name: {
+                    type: String,
+                },
+                age: {
+                    type: Number,
+                },
+                gender: {
+                    type: Number,
+                    enum: patientGender,
+                },
+                phone: {
+                    type: String,
+                },
+                complaint: {
+                    type: String,
+                },
             },
             status: {
                 type: Number,
-                enum: [
-                    1, //active
-                    2, //deleted
-                ],
-                default: 1,
+                enum: consultationBookingStatus,
+                default: consultationBookingStatus.INIT,
             },
         },
         {

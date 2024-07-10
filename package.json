@@ -27,7 +27,7 @@
         "test": "yarn run lint && yarn run compile && yarn run jest",
         "lint": "eslint src/. test/. --config .eslintrc.json --ext .ts --fix",
         "local": "ts-node-dev --no-notify src/",
-        "dev": "export NODE_OPTIONS=--max_old_space_size=4096 && yarn compile && node lib/",
+        "dev": "yarn compile && node lib/",
         "prod": "NODE_ENV=production && yarn run compile && node lib/",
         "jest": "jest --forceExit",
         "compile": "shx rm -rf lib/ && tsc"
@@ -50,6 +50,7 @@
         "@feathersjs/socketio": "^4.5.11",
         "@feathersjs/transport-commons": "^4.5.15",
         "@types/bcryptjs": "^2.4.2",
+        "@types/fluent-ffmpeg": "^2.1.24",
         "@types/image-thumbnail": "^1.0.4",
         "@types/oauth-signature": "^1.5.0",
         "@types/uuid": "^8.3.4",
