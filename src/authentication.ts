@@ -4,7 +4,6 @@ import { LocalStrategy } from '@feathersjs/authentication-local';
 import { expressOauth } from '@feathersjs/authentication-oauth';
 import * as local from '@feathersjs/authentication-local';
 
-
 import { Application } from './declarations';
 import { NextFunction, Request, Response } from 'express';
 
@@ -31,13 +30,14 @@ export default function (app: Application): void {
         authentication,
     );
 
-    const service = app.service('authentication');
-
-    service.hooks({
-        after: {
-            create: [protect('authentication', 'payload', 'user.createdAt', 'user.updatedAt', 'user.__v')],
+    app.use(
+        '/authentication',
+        function (req: Request, res: Response, next: NextFunction) {
+            req.body.ip = req.header('x-forwarded-for') || req.ip;
+            next();
         },
-    });
+        authentication,
+    );
 
     app.configure(expressOauth());
 }

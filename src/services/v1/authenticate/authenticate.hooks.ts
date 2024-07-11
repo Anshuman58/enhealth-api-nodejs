@@ -28,8 +28,8 @@ export default {
             iff(hasData('strategy', AuthStrategies.EMAIL_OTP), FRequired(['email', 'role'])),
             iff(hasData('strategy', AuthStrategies.LOCAL), FRequired(['email', 'password', 'role'])),
             iff(
-                hasData('strategy', AuthStrategies.GOOGLE, AuthStrategies.LINKEDIN),
-                FRequired(['accessToken', 'role']),
+                hasData('strategy', AuthStrategies.JWT, AuthStrategies.GOOGLE, AuthStrategies.LINKEDIN),
+                FRequired(['accessToken']),
             ),
             HandleAuthentication(),
         ],

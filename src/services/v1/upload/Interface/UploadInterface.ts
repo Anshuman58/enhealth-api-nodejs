@@ -30,7 +30,8 @@ export enum FilePurpose {
 export enum FileType {
     IMAGE = 1,
     VIDEO = 2,
-    DOCUMENT = 3,
+    AUDIO = 3,
+    DOCUMENT = 4,
 }
 
 export interface upload_POST {
