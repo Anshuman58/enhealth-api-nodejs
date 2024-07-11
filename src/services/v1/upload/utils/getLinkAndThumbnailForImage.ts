@@ -29,8 +29,11 @@ const getLinkAndThumbnailForImage = async (
     const uploadData = await UploadUtilities.uploadFileToServer(fileKey, buffer, host);
     const uploadUrl = uploadData.Location;
 
-    const thumbnail = await imageThumbnail(buffer, { percentage: 50, responseType: 'buffer' });
-    const thumbnailData = await UploadUtilities.uploadFileToS3(thumbnailKey, thumbnail, mimetype, bucketName);
+    const thumbnail = await imageThumbnail(buffer, {
+        percentage: 50,
+        responseType: 'buffer',
+    });
+    const thumbnailData = await UploadUtilities.uploadFileToServer(thumbnailKey, thumbnail, host);
     const thumbnailUrl = thumbnailData.Location;
 
     return {
