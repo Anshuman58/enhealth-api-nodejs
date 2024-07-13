@@ -1,13 +1,16 @@
-import { Types } from 'mongoose';
-import { UploadMediaAttachment } from './UploadMediaAttachment';
-import { UserRole, UserStatus } from '../db_services/v1/user/interfaces/UserInterfaces';
-import { Address } from './Address';
+import { Types } from "mongoose";
+import { UploadMediaAttachment } from "./UploadMediaAttachment";
+import {
+    UserRole,
+    UserStatus,
+} from "../db_services/v1/user/interfaces/UserInterfaces";
+import { Address } from "./Address";
 import {
     DoctorAward,
     DoctorEducation,
     DoctorExperience,
     MedicalLicense,
-} from '../db_services/v1/profile/doctor-profile/interfaces/DoctorProfileInterfaces';
+} from "../db_services/v1/profile/doctor-profile/interfaces/DoctorProfileInterfaces";
 
 export interface DoctorProfileDetails {
     _id: Types.ObjectId;

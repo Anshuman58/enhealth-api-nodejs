@@ -1,23 +1,22 @@
-// ../db_services/v1/profile/doctor-profile-model.ts - A mongoose model
+// v1/doctor-profile-model.ts - A mongoose model
 //
 // See http://mongoosejs.com/docs/models.html
 // for more of what you can do here.
+import { EntityStatus } from '../../../../constants/EntityStatus';
 import { Application } from '../../../../declarations';
 import { Model, Mongoose } from 'mongoose';
-import { EntityStatus } from '../../../../constants/EntityStatus';
 
 export default function (app: Application): Model<any> {
     const modelName = 'doctorProfile';
     const mongooseClient: Mongoose = app.get('mongooseClient');
     const { Schema } = mongooseClient;
-    const { ObjectId } = Schema?.Types;
+    const { ObjectId } = Schema.Types;
     const schema = new Schema(
         {
             user: {
                 type: ObjectId,
                 ref: 'user',
                 required: true,
-                index: true,
             },
             description: {
                 type: String,
@@ -48,16 +47,13 @@ export default function (app: Application): Model<any> {
             },
             specialities: {
                 type: [String],
-                index: true,
             },
             symptomSpecializations: {
                 type: [String],
-                index: true,
             },
             surgeonSpecializations: {
                 type: [String],
                 default: undefined,
-                index: true,
             },
             languages: {
                 type: [String],
@@ -196,57 +192,6 @@ export default function (app: Application): Model<any> {
             timestamps: true,
         },
     );
-
-    schema.index({
-        'address.coordinates': '2dsphere',
-    });
-
-    schema.index({
-        status: 1,
-        'address.coordinates': '2dsphere',
-    });
-
-    schema.index({
-        status: 1,
-    });
-
-    schema.index({
-        metadata: 1,
-    });
-
-    schema.index({
-        // specialities: 1,
-        // symptomSpecializations: 1,
-        // surgeonSpecializations: 1,
-        languages: 1,
-    });
-
-    schema.index({
-        user: 1,
-        description: 1,
-        specialities: 1,
-        experiences: 1,
-        averageRating: 1,
-        totalRatingCount: 1,
-    });
-
-    schema.index({
-        user: 1,
-        description: 1,
-        symptomSpecializations: 1,
-        experiences: 1,
-        averageRating: 1,
-        totalRatingCount: 1,
-    });
-
-    schema.index({
-        user: 1,
-        description: 1,
-        surgeonSpecializations: 1,
-        experiences: 1,
-        averageRating: 1,
-        totalRatingCount: 1,
-    });
 
     // This is necessary to avoid model compilation errors in watch mode
     // see https://mongoosejs.com/docs/api/connection.html#connection_Connection-deleteModel

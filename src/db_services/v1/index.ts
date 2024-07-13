@@ -7,6 +7,11 @@ import productCategory from './master-data/product-category/product-category.ser
 import consultationBooking from './consultation/consultation-booking/consultation-booking.service';
 import vendorProfile from './profile/vendor-profile/vendor-profile.service';
 import doctorProfile from './profile/doctor-profile/doctor-profile.service';
+import doctorConsultationFee from './consultation/doctor-consultation-fee/doctor-consultation-fee.service';
+import symptom from './master-data/symptom/symptom.service';
+import surgeon from './master-data/surgeon/surgeon.service';
+import speciality from './master-data/speciality/speciality.service';
+import language from './master-data/language/language.service';
 
 // Don't remove this comment. It's needed to format import lines nicely.
 
@@ -19,4 +24,9 @@ export default function (app: Application): void {
     app.configure(consultationBooking);
     app.configure(vendorProfile);
     app.configure(doctorProfile);
+    app.configure(doctorConsultationFee);
+    app.configure(symptom);
+    app.configure(surgeon);
+    app.configure(speciality);
+    app.configure(language);
 }

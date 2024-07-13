@@ -15,7 +15,7 @@ export default function (app: Application): Model<any> {
         {
             user: {
                 type: ObjectId,
-                ref: "user",
+                ref: 'user',
                 required: true,
             },
             drugLicense: {
@@ -123,7 +123,7 @@ export default function (app: Application): Model<any> {
         },
         {
             timestamps: true,
-        }
+        },
     );
 
     schema.index({

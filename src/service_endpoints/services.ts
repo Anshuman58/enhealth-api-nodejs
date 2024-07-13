@@ -13,3 +13,8 @@ export const productSubCategoryPath = 'v1/master-data/product-sub-category';
 export const vendorProfilePath = 'v1/profile/vendor-profile';
 export const doctorProfilePath = 'v1/profile/doctor-profile';
 export const consultationBookingPath = 'v1/consultation/consultation-booking';
+
+// master data
+export const surgeonPath = 'v1/master-data/surgeon';
+export const symptomPath = 'v1/master-data/symptom';
+export const specialityPath = 'v1/master-data/speciality';

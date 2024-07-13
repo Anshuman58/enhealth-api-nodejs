@@ -1,8 +1,8 @@
-import { UploadMediaAttachment } from '../../../../../global_interface/UploadMediaAttachment';
-import { Types } from 'mongoose';
-import { User_GET } from '../../../user/interfaces/UserInterfaces';
-import { Address } from '../../../../../global_interface/Address'
-import { EntityStatus } from '../../../../../constants/EntityStatus';
+import { UploadMediaAttachment } from "../../../../../global_interface/UploadMediaAttachment";
+import { Types } from "mongoose";
+import { User_GET } from "../../../user/interfaces/UserInterfaces";
+import { Address } from "../../../../../global_interface/Address";
+import { EntityStatus } from "../../../../../constants/EntityStatus";
 
 export interface DoctorExperience {
     from: number;
