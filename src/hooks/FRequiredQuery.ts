@@ -40,7 +40,7 @@ const FRequiredQuery =
 
                     if (!existsByDot(item, name)) throw new BadRequest(newMessage);
 
-                    const value = getByDot(item, name);
+                    const value: any = getByDot(item, name);
 
                     if (!value && value !== 0) throw new BadRequest(newMessage);
                 } else {
