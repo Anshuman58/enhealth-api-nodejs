@@ -1,4 +1,3 @@
-
 import { checkContext } from 'feathers-hooks-common';
 import { BadRequest } from '@feathersjs/errors';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -43,7 +42,7 @@ const FRequiredQuery =
 
                     const value = getByDot(item, name);
 
-                    if (!value && value !== 0 && value !== false) throw new BadRequest(newMessage);
+                    if (!value && value !== 0) throw new BadRequest(newMessage);
                 } else {
                     const newMessage = message.replace('%name%', each);
 
@@ -51,7 +50,7 @@ const FRequiredQuery =
 
                     const value = getByDot(item, each);
 
-                    if (!value && value !== 0 && value !== false) throw new BadRequest(newMessage);
+                    if (!value && value !== 0) throw new BadRequest(newMessage);
                 }
             }),
         );
