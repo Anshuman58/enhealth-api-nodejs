@@ -14,6 +14,7 @@ import hashPassword from '@feathersjs/authentication-local/lib/hooks/hash-passwo
 import HasDataExists from '../../../utils/hasDataExists';
 import setCreatedBy from '../../../hooks/SetCreatedBy';
 import ValidateRegistrationToken from '../../../db_services/v1/user/hooks/ValiidateRegistrationToken';
+import CheckNullQuery from '../../../hooks/CheckNullQuery';
 
 const { authenticate } = authentication.hooks;
 
@@ -28,6 +29,7 @@ export default {
                     $in: [UserStatus.ACTIVE, UserStatus.BLOCKED],
                 }),
             ).else(setDefaultQuery('status', UserStatus.ACTIVE)),
+            CheckNullQuery(['vendorProfile', 'doctorProfile']),
         ],
         get: [authenticate('jwt'), setDefaultQuery('status', { $ne: UserStatus.REMOVED })],
         create: [
