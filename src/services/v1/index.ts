@@ -10,6 +10,8 @@ import resetPassword from './reset-password/reset-password.service';
 import agoraTokenService from './generate-agora-token/generate-agora-token.service';
 import vendorProfileManagement from './profile/vendor-profile-management/vendor-profile-management.service';
 import doctorProfileManagement from './profile/doctor-profile-management/doctor-profile-management.service';
+import verifyDoctorProfile from './profile/verify-doctor-profile/verify-doctor-profile.service';
+import verifyVendorProfile from './profile/verify-vendor-profile/verify-vendor-profile.service';
 
 // Don't remove this comment. It's needed to format import lines nicely.
 
@@ -24,4 +26,6 @@ export default function (app: Application): void {
     app.configure(agoraTokenService);
     app.configure(vendorProfileManagement);
     app.configure(doctorProfileManagement);
+    app.configure(verifyDoctorProfile);
+    app.configure(verifyVendorProfile);
 }
