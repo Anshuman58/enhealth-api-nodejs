@@ -61,6 +61,10 @@ export default function (app: Application): Model<any> {
                 type: ObjectId,
                 ref: 'vendorProfile',
             },
+            doctorProfile: {
+                type: ObjectId,
+                ref: 'doctorProfile',
+            },
             socialLogin: {
                 type: Boolean,
                 default: false,

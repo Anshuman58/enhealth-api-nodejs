@@ -7,22 +7,23 @@ import hooks from './vendor-profile.hooks';
 
 // Add this service to the service type index
 declare module '../../../../declarations' {
-  interface ServiceTypes {
-    'v1/profile/vendor-profile': VendorProfile & ServiceAddons<any>;
-  }
+    interface ServiceTypes {
+        'v1/profile/vendor-profile': VendorProfile & ServiceAddons<any>;
+    }
 }
 
 export default function (app: Application): void {
-  const options = {
-    Model: createModel(app),
-    paginate: app.get('paginate')
-  };
+    const options = {
+        Model: createModel(app),
+        paginate: app.get('paginate'),
+        whitelist: ['$populate', '$regex', '$options'],
+    };
 
-  // Initialize our service with any options it requires
-  app.use('/v1/profile/vendor-profile', new VendorProfile(options, app));
+    // Initialize our service with any options it requires
+    app.use('/v1/profile/vendor-profile', new VendorProfile(options, app));
 
-  // Get our initialized service so that we can register hooks
-  const service = app.service('v1/profile/vendor-profile');
+    // Get our initialized service so that we can register hooks
+    const service = app.service('v1/profile/vendor-profile');
 
-  service.hooks(hooks);
+    service.hooks(hooks);
 }
