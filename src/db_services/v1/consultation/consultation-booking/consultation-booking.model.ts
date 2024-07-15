@@ -41,6 +41,14 @@ export default function (app: Application): Model<any> {
                     type: String,
                 },
             },
+            prescription: {
+                link: {
+                    type: String,
+                },
+                metadata: {
+                    size: Number,
+                },
+            },
             status: {
                 type: Number,
                 enum: consultationBookingStatus,

@@ -1,4 +1,6 @@
-import { Types } from 'mongoose';
+import { Types } from "mongoose";
+import type { upload_POST } from "../../../../../services/v1/upload/Interface/UploadInterface";
+import type { UploadMediaAttachment } from "../../../../../global_interface/UploadMediaAttachment";
 
 export interface ConsultationBooking_Create {
     doctor: Types.ObjectId;
@@ -10,6 +12,7 @@ export interface ConsultationBooking_Create {
         phone: string;
         complaint: string;
     };
+    prescription: UploadMediaAttachment;
     status: consultationBookingStatus;
 }
 
