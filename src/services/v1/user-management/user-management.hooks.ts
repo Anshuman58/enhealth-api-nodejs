@@ -24,7 +24,7 @@ export default {
         find: [
             authenticate('jwt'),
             iff(
-                Permit.is(Permit.SUPER_ADMIN),
+                Permit.is(Permit.SUPER_ADMIN, Permit.VENDOR),
                 setDefaultQuery('status', {
                     $in: [UserStatus.ACTIVE, UserStatus.BLOCKED],
                 }),
