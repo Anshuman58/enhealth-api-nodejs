@@ -1,6 +1,6 @@
-import { Types } from "mongoose";
-import type { upload_POST } from "../../../../../services/v1/upload/Interface/UploadInterface";
-import type { UploadMediaAttachment } from "../../../../../global_interface/UploadMediaAttachment";
+import { Types } from 'mongoose';
+import type { upload_POST } from '../../../../../services/v1/upload/Interface/UploadInterface';
+import type { UploadMediaAttachment } from '../../../../../global_interface/UploadMediaAttachment';
 
 export interface ConsultationBooking_Create {
     doctor: Types.ObjectId;
