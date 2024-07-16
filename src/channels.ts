@@ -58,7 +58,7 @@ export default function (app: Application): void {
         return handleChatEvent(result, context);
     });
 
-    app.service('v1/consultation/consultation-booking').publish('patched', async (result, context) => {
+    app.service('v1/consultation/consultation-booking').publish('created', async (result, context) => {
         return handleConsultationEvent(result, context);
     });
 
