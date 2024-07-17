@@ -2,25 +2,28 @@
 //
 // See http://mongoosejs.com/docs/models.html
 // for more of what you can do here.
-import { Application } from '../../../../declarations';
-import { Model, Mongoose } from 'mongoose';
-import { consultationBookingStatus, patientGender } from './Interface/ConsultationookingInterface';
+import { Application } from "../../../../declarations";
+import { Model, Mongoose } from "mongoose";
+import {
+    consultationBookingStatus,
+    patientGender,
+} from "./Interface/ConsultationookingInterface";
 
 export default function (app: Application): Model<any> {
-    const modelName = 'consultationBooking';
-    const mongooseClient: Mongoose = app.get('mongooseClient');
+    const modelName = "consultationBooking";
+    const mongooseClient: Mongoose = app.get("mongooseClient");
     const { Schema } = mongooseClient;
     const { ObjectId } = Schema?.Types;
     const schema = new Schema(
         {
             doctor: {
                 type: ObjectId,
-                ref: 'user',
+                ref: "user",
                 required: true,
             },
             vendor: {
                 type: ObjectId,
-                ref: 'user',
+                ref: "user",
                 required: true,
             },
             patient: {
@@ -49,6 +52,10 @@ export default function (app: Application): Model<any> {
                     size: Number,
                 },
             },
+            code: {
+                type: String,
+                required: true,
+            },
             status: {
                 type: Number,
                 enum: consultationBookingStatus,
@@ -57,7 +64,7 @@ export default function (app: Application): Model<any> {
         },
         {
             timestamps: true,
-        },
+        }
     );
 
     // This is necessary to avoid model compilation errors in watch mode

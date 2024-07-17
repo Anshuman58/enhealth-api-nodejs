@@ -8,6 +8,8 @@ import setCreatedByQuery from '../../../../hooks/SetCreatedByQuery';
 import setDefaultQuery from '../../../../hooks/SetDefaultQuery';
 import { consultationBookingStatus } from './Interface/ConsultationookingInterface';
 import PatchDeleted from '../../../../hooks/PatchDeleted';
+import { consultationBookingPath } from '../../../../service_endpoints/services';
+import GenerateCode from '../../../../hooks/GenerateCode';
 // Don't remove this comment. It's needed to format import lines nicely.
 
 const { authenticate } = authentication.hooks;
@@ -30,6 +32,7 @@ export default {
             iff(Permit.is(Permit.DOCTOR, Permit.VENDOR)).else(disallow()),
             SetCreatedBy('vendor'),
             FRequired('doctor'),
+            GenerateCode(consultationBookingPath, 'CNT', 'code', 6),
             SetDefaultItem('status', consultationBookingStatus.INIT),
         ],
         update: [disallow()],
