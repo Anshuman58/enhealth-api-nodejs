@@ -16,7 +16,7 @@ const getLinkForDocument = async (
 
     // Upload the file.
     // const uploadData = await S3Utilities.uploadFile(fileKey, buffer, mimetype, bucketName);
-    const uploadData = await UploadUtilities.uploadFileToServer(fileKey, buffer, host);
+    const uploadData = await UploadUtilities.uploadFileToS3(fileKey, buffer, mimetype, bucketName);
     const uploadUrl = uploadData.Location;
 
     return {

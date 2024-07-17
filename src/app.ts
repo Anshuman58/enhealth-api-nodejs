@@ -69,7 +69,7 @@ app.use(express.errorHandler({ logger } as any));
 
 app.hooks(appHooks);
 
-// app.configure(S3Utilities.initializeAWS);
+app.configure(S3Utilities.initializeAWS);
 // app.configure(FcmUtilities.initializeFirebase);
 app.configure(MSG91Utilities.initializeMSG91);
 app.configure(AuthHelper.initializeAuth);
