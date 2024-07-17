@@ -27,7 +27,7 @@ export default {
             Permit.DOCTOR,
             SetCreatedByQuery('userId'),
             iff(hasDataExists('phone', 'averageRating', 'totalRatingCount'), disallow()),
-            CheckAddress(),
+            // CheckAddress(),
             UpdateDoctorProfile(),
             // UpdateDoctorConsultationFee(),
         ],

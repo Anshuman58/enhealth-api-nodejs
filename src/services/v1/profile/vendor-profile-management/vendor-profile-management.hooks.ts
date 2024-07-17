@@ -26,7 +26,7 @@ export default {
             Permit.VENDOR,
             SetCreatedByQuery('userId'),
             iff(hasDataExists('phone', 'email', 'password'), disallow()),
-            CheckAddress(),
+            // CheckAddress(),
             UpdateVendorProfile(),
         ],
         remove: [disallow()],
