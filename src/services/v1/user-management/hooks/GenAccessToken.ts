@@ -1,4 +1,5 @@
-import { HookContext } from '@feathersjs/feathers';
+import { HookContext } from "@feathersjs/feathers";
+import { AuthHelper } from "../../../../utils/AuthHelper/AuthHelper";
 
 const GenAccessToken = () => async (context: HookContext) => {
     const { app } = context;
@@ -7,15 +8,13 @@ const GenAccessToken = () => async (context: HookContext) => {
 
     const data = { ...context.result };
 
-
     if (data.createdBy) return context;
 
-    const accessToken = await app.service('authentication').createAccessToken({ sub: data._id });
+    const newUser = await AuthHelper.generateAccessToken(data);
 
     Object.keys(context.result).forEach((e) => delete context.result[e]);
 
-    context.result.accessToken = accessToken;
-    context.result.user = data;
+    context.result = newUser;
 
     return context;
 };
