@@ -6,7 +6,6 @@ import { Actions, AuthStrategies } from './interfaces/AuthenticationInterface';
 import HandleAuthentication from './hooks/HandleAuthentication';
 import HandleOTPVerification from './hooks/HandleOTPVerification';
 import CreateUserSession from '../../../hooks/CreateUserSession';
-import CustomProtectHook from '../../../hooks/CustomProtectHook';
 import AttachProfileDetails from './hooks/AttachProfileDetails';
 // Don't remove this comment. It's needed to format import lines nicely.
 
