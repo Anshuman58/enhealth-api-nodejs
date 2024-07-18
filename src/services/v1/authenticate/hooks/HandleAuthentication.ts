@@ -23,11 +23,11 @@ const HandleAuthentication = () => async (context: HookContext) => {
             });
             break;
 
-        case AuthStrategies.JWT:
-            context.result = await handleJWTAuthentication(context).catch((e: FeathersError) => {
-                throw e;
-            });
-            break;
+        // case AuthStrategies.JWT:
+        //     context.result = await handleJWTAuthentication(context).catch((e: FeathersError) => {
+        //         throw e;
+        //     });
+        //     break;
 
         case AuthStrategies.GOOGLE:
         case AuthStrategies.LINKEDIN:
