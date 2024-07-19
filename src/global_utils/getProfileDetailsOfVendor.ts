@@ -36,6 +36,7 @@ const getProfileDetailsOfVendor = async (userId: string, context: HookContext): 
                             wholesaleLicense: 1,
                             address: 1,
                             ownerIdProof: 1,
+                            businessIdProof: 1,
                             addressProof: 1,
                             attachments: 1,
                             termsAndConditionAccepted: 1,
