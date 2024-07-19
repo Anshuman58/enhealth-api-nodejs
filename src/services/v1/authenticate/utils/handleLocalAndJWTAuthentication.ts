@@ -1,11 +1,17 @@
 /**
  * Created By Soumya(soumya\@smartters.in) on 10/17/2022 at 1:42 PM.
  */
-import { HookContext } from '@feathersjs/feathers';
-import { BadRequest, FeathersError } from '@feathersjs/errors';
-import { AuthenticationResult } from '@feathersjs/authentication';
-import { User_GET, UserRole } from '../../../../db_services/v1/user/interfaces/UserInterfaces';
-import { authenticationPath } from '../../../../service_endpoints/services';
+import { HookContext } from "@feathersjs/feathers";
+import { BadRequest, FeathersError } from "@feathersjs/errors";
+import { AuthenticationResult } from "@feathersjs/authentication";
+import {
+    User_GET,
+    UserRole,
+} from "../../../../db_services/v1/user/interfaces/UserInterfaces";
+import {
+    authenticationPath,
+    userPath,
+} from "../../../../service_endpoints/services";
 
 /**
  * Handle email password login with local strategy and jwt strategy verification.
@@ -13,13 +19,34 @@ import { authenticationPath } from '../../../../service_endpoints/services';
  * @returns - The accessToken and user object received for the given credentials.
  */
 const handleLocalAndJWTAuthentication = async (
-    context: HookContext,
+    context: HookContext
 ): Promise<{
     accessToken: string;
     authentication: AuthenticationResult;
     user: User_GET;
 }> => {
     const { data, app, params } = context;
+
+    const { email, role } = data;
+
+    if (email) {
+        const res = await app
+            .service(userPath)
+            ._find({
+                query: {
+                    email: email,
+                    role: role,
+                    $limit: 1,
+                },
+                paginate: false,
+            })
+            .catch(() => {
+                return [];
+            });
+
+        if (!res.length) throw new BadRequest("Invalid Credential");
+    }
+
     const authenticationService = app.service(authenticationPath);
 
     /*Need to change the below line in future*/
@@ -32,8 +59,8 @@ const handleLocalAndJWTAuthentication = async (
             },
             {
                 ...params,
-                provider: 'server',
-            },
+                provider: "server",
+            }
         )
         .catch((e: FeathersError) => {
             throw e;
