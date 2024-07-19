@@ -18,6 +18,7 @@ const UpdateVendorProfile = () => async (context: HookContext) => {
     const {
         name,
         avatar,
+        phone,
         addressProof,
         attachments,
         address,
@@ -33,6 +34,8 @@ const UpdateVendorProfile = () => async (context: HookContext) => {
 
     if (name) userPatchData.name = name;
     if (avatar) userPatchData.avatar = avatar;
+    if (phone) userPatchData.phone = phone;
+
 
     const vendorProfilePatchData: VendorProfile_PATCH = {};
     if (ownerIdProof) vendorProfilePatchData.ownerIdProof = ownerIdProof;

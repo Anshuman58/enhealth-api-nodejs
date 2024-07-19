@@ -12,7 +12,6 @@ import HasAccessToken from '../../../utils/hasAccessToken';
 import CheckEmailOrPhone from '../../../db_services/v1/user/hooks/CheckEmailOrPhone';
 import hashPassword from '@feathersjs/authentication-local/lib/hooks/hash-password';
 import HasDataExists from '../../../utils/hasDataExists';
-import setCreatedBy from '../../../hooks/SetCreatedBy';
 import ValidateRegistrationToken from '../../../db_services/v1/user/hooks/ValiidateRegistrationToken';
 import CheckNullQuery from '../../../hooks/CheckNullQuery';
 

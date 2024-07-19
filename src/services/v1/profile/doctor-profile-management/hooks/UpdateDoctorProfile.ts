@@ -18,6 +18,7 @@ const UpdateDoctorProfile = () => async (context: HookContext) => {
     const {
         name,
         dob,
+        phone,
         gender,
         avatar,
         registrationCertificate,
@@ -42,7 +43,7 @@ const UpdateDoctorProfile = () => async (context: HookContext) => {
     const userPatchData: User_PATCH = {};
 
     if (name) userPatchData.name = name;
-    // if (dob) userPatchData.dob = dob;
+    if (phone) userPatchData.phone = phone;
     if (avatar) userPatchData.avatar = avatar;
     if (gender) userPatchData.gender = gender;
     if (email) userPatchData.email = email;
