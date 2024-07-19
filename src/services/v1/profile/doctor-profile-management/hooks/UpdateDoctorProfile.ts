@@ -1,11 +1,17 @@
-import { HookContext } from '@feathersjs/feathers';
-import { User_PATCH, UserStatus } from '../../../../../db_services/v1/user/interfaces/UserInterfaces';
+import { HookContext } from "@feathersjs/feathers";
+import {
+    User_PATCH,
+    UserStatus,
+} from "../../../../../db_services/v1/user/interfaces/UserInterfaces";
 // import { UserDbOperations } from '../../../../../db_services/v1/user/utils/UserDbOperations';
-import { EntityStatus } from '../../../../../constants/EntityStatus';
-import { UpdateDoctorProfileRequest } from '../interfaces/UpdateDoctorProfileInterfaces';
-import { DoctorProfile_PATCH } from '../../../../../db_services/v1/profile/doctor-profile/interfaces/DoctorProfileInterfaces';
-import { doctorProfilePath, userPath } from '../../../../../service_endpoints/services';
-import type { FeathersError } from '@feathersjs/errors';
+import { EntityStatus } from "../../../../../constants/EntityStatus";
+import { UpdateDoctorProfileRequest } from "../interfaces/UpdateDoctorProfileInterfaces";
+import { DoctorProfile_PATCH } from "../../../../../db_services/v1/profile/doctor-profile/interfaces/DoctorProfileInterfaces";
+import {
+    doctorProfilePath,
+    userPath,
+} from "../../../../../service_endpoints/services";
+import type { FeathersError } from "@feathersjs/errors";
 
 const UpdateDoctorProfile = () => async (context: HookContext) => {
     const { data, params, app } = context;
@@ -51,22 +57,29 @@ const UpdateDoctorProfile = () => async (context: HookContext) => {
     const doctorProfilePatchData: DoctorProfile_PATCH = {};
 
     if (description) doctorProfilePatchData.description = description;
-    if (registrationCertificate) doctorProfilePatchData.registrationCertificate = registrationCertificate;
+    if (registrationCertificate)
+        doctorProfilePatchData.registrationCertificate =
+            registrationCertificate;
     if (hospitalName) doctorProfilePatchData.hospitalName = hospitalName;
     if (clinicalEstablishmentCertificate)
-        doctorProfilePatchData.clinicalEstablishmentCertificate = clinicalEstablishmentCertificate;
+        doctorProfilePatchData.clinicalEstablishmentCertificate =
+            clinicalEstablishmentCertificate;
     if (educations) doctorProfilePatchData.educations = educations;
     if (idProof) doctorProfilePatchData.idProof = idProof;
     if (awards) doctorProfilePatchData.awards = awards;
     if (experiences) doctorProfilePatchData.experiences = experiences;
     if (medicalLicense) doctorProfilePatchData.medicalLicense = medicalLicense;
     if (languages) doctorProfilePatchData.languages = languages;
-    if (surgeonSpecializations) doctorProfilePatchData.surgeonSpecializations = surgeonSpecializations;
-    if (symptomSpecializations) doctorProfilePatchData.symptomSpecializations = symptomSpecializations;
+    if (surgeonSpecializations)
+        doctorProfilePatchData.surgeonSpecializations = surgeonSpecializations;
+    if (symptomSpecializations)
+        doctorProfilePatchData.symptomSpecializations = symptomSpecializations;
     if (address) doctorProfilePatchData.address = address;
     if (workPlaceId) doctorProfilePatchData.workPlaceId = workPlaceId;
     if (specialities) doctorProfilePatchData.specialities = specialities;
-    if (termsAndConditionAccepted) doctorProfilePatchData.termsAndConditionAccepted = termsAndConditionAccepted;
+    if (termsAndConditionAccepted)
+        doctorProfilePatchData.termsAndConditionAccepted =
+            termsAndConditionAccepted;
 
     let response = {};
 
@@ -92,7 +105,7 @@ const UpdateDoctorProfile = () => async (context: HookContext) => {
                         $in: [UserStatus.ACTIVE, UserStatus.INACTIVE],
                     },
                 },
-                provider: 'server',
+                provider: "server",
             })
             .catch((e: FeathersError) => {
                 throw e;
@@ -142,24 +155,24 @@ const UpdateDoctorProfile = () => async (context: HookContext) => {
                 user: userId,
                 status: EntityStatus.ACTIVE,
                 $select: [
-                    'description',
-                    'registrationCertificate',
-                    'specialities',
-                    'symptomSpecializations',
-                    'surgeonSpecializations',
-                    'languages',
-                    'hospitalName',
-                    'experiences',
-                    'educations',
-                    'idProof',
-                    'awards',
-                    'medicalLicense',
-                    'clinicalEstablishmentCertificate',
-                    'workPlaceId',
-                    'termsAndConditionAccepted',
+                    "description",
+                    "registrationCertificate",
+                    "specialities",
+                    "symptomSpecializations",
+                    "surgeonSpecializations",
+                    "languages",
+                    "hospitalName",
+                    "experiences",
+                    "educations",
+                    "idProof",
+                    "awards",
+                    "medicalLicense",
+                    "clinicalEstablishmentCertificate",
+                    "workPlaceId",
+                    "termsAndConditionAccepted",
                 ],
             },
-            provider: 'server',
+            provider: "server",
         })
         .then((res: any) => (res.total ? res.data[0] : null));
 
@@ -172,25 +185,25 @@ const UpdateDoctorProfile = () => async (context: HookContext) => {
                 {
                     query: {
                         $select: [
-                            'description',
-                            'registrationCertificate',
-                            'specialities',
-                            'symptomSpecializations',
-                            'surgeonSpecializations',
-                            'languages',
-                            'hospitalName',
-                            'experiences',
-                            'educations',
-                            'idProof',
-                            'awards',
-                            'medicalLicense',
-                            'clinicalEstablishmentCertificate',
-                            'workPlaceId',
-                            'termsAndConditionAccepted',
+                            "description",
+                            "registrationCertificate",
+                            "specialities",
+                            "symptomSpecializations",
+                            "surgeonSpecializations",
+                            "languages",
+                            "hospitalName",
+                            "experiences",
+                            "educations",
+                            "idProof",
+                            "awards",
+                            "medicalLicense",
+                            "clinicalEstablishmentCertificate",
+                            "workPlaceId",
+                            "termsAndConditionAccepted",
                         ],
                     },
-                    provider: 'server',
-                },
+                    provider: "server",
+                }
             )
             .catch((e: FeathersError) => {
                 throw e;
@@ -209,8 +222,10 @@ const UpdateDoctorProfile = () => async (context: HookContext) => {
     // Check if any profile related modification required.
     if (Object.keys(doctorProfilePatchData).length) {
         if (
-            typeof doctorProfilePatchData.termsAndConditionAccepted !== 'undefined' &&
-            typeof doctorProfileDetails.termsAndConditionAccepted !== 'undefined'
+            typeof doctorProfilePatchData.termsAndConditionAccepted !==
+                "undefined" &&
+            typeof doctorProfileDetails.termsAndConditionAccepted !==
+                "undefined"
         ) {
             // throw new BadRequest('You can not perform this operation.');
             doctorProfilePatchData.termsAndConditionAccepted = undefined;
@@ -218,29 +233,33 @@ const UpdateDoctorProfile = () => async (context: HookContext) => {
 
         const doctorProfilePatchResponse = await app
             .service(doctorProfilePath)
-            .patch(doctorProfileDetails._id.toString(), doctorProfilePatchData, {
-                query: {
-                    status: EntityStatus.ACTIVE,
-                    $select: [
-                        'description',
-                        'registrationCertificate',
-                        'specialities',
-                        'symptomSpecializations',
-                        'surgeonSpecializations',
-                        'languages',
-                        'hospitalName',
-                        'experiences',
-                        'educations',
-                        'idProof',
-                        'awards',
-                        'medicalLicense',
-                        'clinicalEstablishmentCertificate',
-                        'workPlaceId',
-                        'termsAndConditionAccepted',
-                    ],
-                },
-                provider: 'server',
-            })
+            .patch(
+                doctorProfileDetails._id.toString(),
+                doctorProfilePatchData,
+                {
+                    query: {
+                        status: EntityStatus.ACTIVE,
+                        $select: [
+                            "description",
+                            "registrationCertificate",
+                            "specialities",
+                            "symptomSpecializations",
+                            "surgeonSpecializations",
+                            "languages",
+                            "hospitalName",
+                            "experiences",
+                            "educations",
+                            "idProof",
+                            "awards",
+                            "medicalLicense",
+                            "clinicalEstablishmentCertificate",
+                            "workPlaceId",
+                            "termsAndConditionAccepted",
+                        ],
+                    },
+                    provider: "server",
+                }
+            )
             .catch((err: FeathersError) => {
                 throw err;
             });

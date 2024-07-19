@@ -25,7 +25,7 @@ export default {
         patch: [
             Permit.VENDOR,
             SetCreatedByQuery('userId'),
-            iff(hasDataExists('phone', 'email', 'password'), disallow()),
+            iff(hasDataExists( 'email', 'password'), disallow()),
             // CheckAddress(),
             UpdateVendorProfile(),
         ],
