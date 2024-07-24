@@ -36,8 +36,11 @@
         "secretAccessKey": "FwQqthZv+PqqO4tVPSDt8cCyZ77FwM794bPiOvGe",
         "region": "us-east-1"
     },
-    "aws_bucket": "enhealth-test",
-    "aws_bucket_url": "https://enhealth-test.s3.amazonaws.com/",
+    "aws_bucket1": "enhealth-test",
+    "aws_bucket_url1": "https://enhealth-test.s3.amazonaws.com/",
+
+    "aws_bucket": "enhealth-new",
+    "aws_bucket_url": "https://enhealth-new.s3.amazonaws.com/",
     "fcm": {
         "projectId": "",
         "clientEmail": "",
