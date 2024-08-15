@@ -25,7 +25,7 @@
             "passwordField": "password"
         }
     },
-    "mongodb": "mongodb+srv://elliot:elliot%402658@cluster0.r8lhm.mongodb.net/enhealth",
+    "mongodb": "mongodb+srv://enhealth_user:enhealth001@cluster0.r6iwr.mongodb.net/enhealth_dev",
     "otp": {
         "length": 6,
         "expireOn": 10,
